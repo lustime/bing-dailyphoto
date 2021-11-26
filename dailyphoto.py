@@ -1,5 +1,6 @@
 from Images import Images
 import json, re, requests, os
+import datetime
 
 # lst = []
 # lst1 = [['a', 'b'], ['c', 'd']]
@@ -20,7 +21,10 @@ images = res['images']
 image = images[0]
 url = BING_URL + image['url']
 url = url.split('&')[0]
-date = image['enddate']
+enddate = image['enddate']
+time_struct = datetime.datetime.strptime(enddate, '%Y%m%d')
+date = datetime.datetime.strftime(time_struct, '%Y-%m-%d')
+
 _copyright = image['copyright']
 
 fp = open('bing-dailyphoto.md', 'r+', encoding='utf-8')
@@ -33,25 +37,26 @@ for line in lines[1:]:
         continue
     descEnd = line.index(']')
     urlStart = line.rindex('(') + 1
-    date = line[0:10]
-    desc = line[14:descEnd]
-    url = line[urlStart:len(line) - 1]
-    imgList.append(Images(url=url, date=date, desc=desc))
+    tdDate = line[0:10]
+    tdDesc = line[14:descEnd]
+    tdUrl = line[urlStart:len(line) - 1]
+    imgList.append(Images(url=tdUrl, date=tdDate, desc=tdDesc))
 imgList.insert(0, Images(url, date, _copyright))
-
+imageList = list(set(imgList))
+imageList.sort(key=imgList.index)
 brd = open('bing-dailyphoto.md', 'w+', encoding='utf-8')
 brd.write('## Bing Dailyphoto' + '\n')
-for img in imgList:
+for img in imageList:
     brd.write(img.formatmarkdown() + '\n')
     brd.write('\n')
 
 rd = open('README.md', 'w+', encoding='utf-8')
 rd.write('## Bing Dailyphoto' + '\n')
-rd.write(imgList[0].tolarge() + '\n')
+rd.write(imageList[0].tolarge() + '\n')
 rd.write("|      |      |      |" + '\n')
 rd.write("| :----: | :----: | :----: |" + '\n')
-i = 0
-for img in imgList:
+i = 1
+for img in imageList:
     rd.write("|" + img.tostring())
     if i % 3 == 0:
         rd.write("|" + "\n")
