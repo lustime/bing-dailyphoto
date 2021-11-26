@@ -27,7 +27,7 @@ date = datetime.datetime.strftime(time_struct, '%Y-%m-%d')
 
 _copyright = image['copyright']
 
-fp = open('bing-dailyphoto.md', 'r+', encoding='utf-8')
+fp = open('./bing-dailyphoto.md', 'r+', encoding='utf-8')
 lines = fp.readlines()
 # imgList = [Images()]
 imgList = []
@@ -44,7 +44,7 @@ for line in lines[1:]:
 imgList.insert(0, Images(url, date, _copyright))
 imageList = list(set(imgList))
 imageList.sort(key=imgList.index)
-brd = open('bing-dailyphoto.md', 'w+', encoding='utf-8')
+brd = open('./bing-dailyphoto.md', 'w+', encoding='utf-8')
 brd.write('## Bing Dailyphoto' + '\n')
 for img in imageList:
     brd.write(img.formatmarkdown() + '\n')
