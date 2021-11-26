@@ -42,8 +42,12 @@ for line in lines[1:]:
     tdUrl = line[urlStart:len(line) - 1]
     imgList.append(Images(url=tdUrl, date=tdDate, desc=tdDesc))
 imgList.insert(0, Images(url, date, _copyright))
-imageList = list(set(imgList))
-imageList.sort(key=imgList.index)
+# imageList = list(set(imgList))
+# imageList.sort(key=imgList.index)
+imageList = []
+for img in imgList:
+    if img not in imageList:
+        imageList.append(img)
 brd = open('./bing-dailyphoto.md', 'w+', encoding='utf-8')
 brd.write('## Bing Dailyphoto' + '\n')
 for img in imageList:
