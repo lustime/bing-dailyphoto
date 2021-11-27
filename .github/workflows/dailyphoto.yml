@@ -30,11 +30,15 @@ jobs:
     - name: Run
       run: python dailyphoto.py
     - name: Commit files
-      run: |
-         git config --local user.email "2247868358@qq.com"
-         git config --local user.name "lustime"
-         git add *.md
-         git commit -m "update readme.md"
+    - uses: EndBug/add-and-commit@v7
+      with:
+        default_author: "lustime"
+        author_emai: "2247868358@qq.com"
+#      run: |
+#         git config --local user.email "2247868358@qq.com"
+#         git config --local user.name "lustime"
+#         git add *.md
+#         git commit -m "update readme.md"
     - name: Push changes
       uses:  ad-m/github-push-action@master
       with:
