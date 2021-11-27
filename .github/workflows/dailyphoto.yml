@@ -46,11 +46,13 @@ jobs:
          ref: upload # Change to your branch to place crawled pictures
     - name: Run downloaddailypic.py
       run: python downloaddailypic.py
+    - name: list
+      run: git status
     - name: Commit files
       run: |
           git config --local user.email "2247868358@qq.com"
           git config --local user.name "lustime"
-          git add "*.pic" "*.png"
+          git add "*.jpg"
           git commit -m "upload pic"
     - name: Push changes
       uses:  ad-m/github-push-action@master
