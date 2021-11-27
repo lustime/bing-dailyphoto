@@ -1,5 +1,6 @@
 from Images import Images
-import json, re, requests, os
+import json
+import requests
 import datetime
 
 # lst = []
@@ -27,43 +28,53 @@ date = datetime.datetime.strftime(time_struct, '%Y-%m-%d')
 
 _copyright = image['copyright']
 
-fp = open('./bing-dailyphoto.md', 'r+', encoding='utf-8')
-lines = fp.readlines()
-# imgList = [Images()]
-imgList = []
-for line in lines[1:]:
-    line = line.strip()
-    if len(line) == 0:
-        continue
-    descEnd = line.index(']')
-    urlStart = line.rindex('(') + 1
-    tdDate = line[0:10]
-    tdDesc = line[14:descEnd]
-    tdUrl = line[urlStart:len(line) - 1]
-    imgList.append(Images(url=tdUrl, date=tdDate, desc=tdDesc))
-imgList.insert(0, Images(url, date, _copyright))
-# imageList = list(set(imgList))
-# imageList.sort(key=imgList.index)
-imageList = []
-for img in imgList:
-    if img not in imageList:
-        imageList.append(img)
-brd = open('./bing-dailyphoto.md', 'w+', encoding='utf-8')
-brd.write('## Bing Dailyphoto' + '\n')
-for img in imageList:
-    brd.write(img.formatmarkdown() + '\n')
-    brd.write('\n')
 
-rd = open('README.md', 'w+', encoding='utf-8')
-rd.write('## Bing Dailyphoto' + '\n')
-rd.write(imageList[0].tolarge() + '\n')
-rd.write("|      |      |      |" + '\n')
-rd.write("| :----: | :----: | :----: |" + '\n')
-i = 1
-for img in imageList:
-    rd.write("|" + img.tostring())
-    if i % 3 == 0:
-        rd.write("|" + "\n")
-    i = i + 1
-if i % 3 != 1:
-    rd.write('|' + '\n')
+def read_bing():
+    fp = open('./bing-dailyphoto.md', 'r+', encoding='utf-8')
+    lines = fp.readlines()
+    # imgList = [Images()]
+    imgList = []
+    for line in lines[1:]:
+        line = line.strip()
+        if len(line) == 0:
+            continue
+        descEnd = line.index(']')
+        urlStart = line.rindex('(') + 1
+        tdDate = line[0:10]
+        tdDesc = line[14:descEnd]
+        tdUrl = line[urlStart:len(line) - 1]
+        imgList.append(Images(url=tdUrl, date=tdDate, desc=tdDesc))
+    imgList.insert(0, Images(url, date, _copyright))
+    # imageList = list(set(imgList))
+    # imageList.sort(key=imgList.index)
+    imageList = []
+    for img in imgList:
+        if img not in imageList:
+            imageList.append(img)
+    return imageList
+
+
+def write_md():
+    image_list = read_bing()
+    brd = open('./bing-dailyphoto.md', 'w+', encoding='utf-8')
+    brd.write('## Bing Dailyphoto' + '\n')
+    for imgs in image_list:
+        brd.write(imgs.formatmarkdown() + '\n')
+        brd.write('\n')
+    rd = open('README.md', 'w+', encoding='utf-8')
+    rd.write('## Bing Dailyphoto' + '\n')
+    rd.write(image_list[0].tolarge() + '\n')
+    rd.write("|      |      |      |" + '\n')
+    rd.write("| :----: | :----: | :----: |" + '\n')
+    i = 1
+    for imgs in image_list:
+        rd.write("|" + imgs.tostring())
+        if i % 3 == 0:
+            rd.write("|" + "\n")
+        i = i + 1
+    if i % 3 != 1:
+        rd.write('|' + '\n')
+
+
+if __name__ == '__main__':
+    write_md()

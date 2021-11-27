@@ -7,7 +7,6 @@ class Images(object):
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-
     def tostring(self):
         smallurl = self.url + '&pid=hp&w=384&h=216&rs=1&c=4'
         return '![]({}){} [download]({})'.format(smallurl, self.date, self.url)
