@@ -16,17 +16,20 @@ headers = {
 
 BING_API = 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=10&nc=1612409408851&pid=hp&FORM=BEHPTB&uhd=1&uhdwidth=3840&uhdheight=2160'
 BING_URL = "https://cn.bing.com"
-response = requests.get(BING_API, headers=headers)
-res = json.loads(response.text)
-images = res['images']
-image = images[0]
-url = BING_URL + image['url']
-url = url.split('&')[0]
-enddate = image['enddate']
-time_struct = datetime.datetime.strptime(enddate, '%Y%m%d')
-date = datetime.datetime.strftime(time_struct, '%Y-%m-%d')
 
-_copyright = image['copyright']
+
+def get_today_image() -> Images:
+    response = requests.get(BING_API, headers=headers)
+    res = json.loads(response.text)
+    images = res['images']
+    image = images[0]
+    url = BING_URL + image['url']
+    url = url.split('&')[0]
+    enddate = image['enddate']
+    time_struct = datetime.datetime.strptime(enddate, '%Y%m%d')
+    date = datetime.datetime.strftime(time_struct, '%Y-%m-%d')
+    _copyright = image['copyright']
+    return Images(url, date, _copyright)
 
 
 def read_bing():
@@ -40,11 +43,11 @@ def read_bing():
             continue
         descEnd = line.index(']')
         urlStart = line.rindex('(') + 1
-        tdDate = line[0:10]
-        tdDesc = line[14:descEnd]
-        tdUrl = line[urlStart:len(line) - 1]
-        imgList.append(Images(url=tdUrl, date=tdDate, desc=tdDesc))
-    imgList.insert(0, Images(url, date, _copyright))
+        date = line[0:10]
+        desc = line[14:descEnd]
+        url = line[urlStart:len(line) - 1]
+        imgList.append(Images(url=url, date=date, desc=desc))
+    imgList.insert(0, get_today_image())
     # imageList = list(set(imgList))
     # imageList.sort(key=imgList.index)
     imageList = []
