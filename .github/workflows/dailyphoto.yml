@@ -52,11 +52,14 @@ jobs:
     - name: list
       run: git status
     - name: Commit files
-      run: |
-          git config --local user.email "2247868358@qq.com"
-          git config --local user.name "lustime"
-          git add "*.jpg"
-          git commit -m "upload pic"
+      uses: EndBug/add-and-commit@v7
+      with:
+        default_author: github_actions
+#      run: |
+#          git config --local user.email "2247868358@qq.com"
+#          git config --local user.name "lustime"
+#          git add "*.jpg"
+#          git commit -m "upload pic"
     - name: Push changes
       uses:  ad-m/github-push-action@master
       with:
