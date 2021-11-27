@@ -32,7 +32,8 @@ jobs:
     - name: Commit files
       uses: EndBug/add-and-commit@v7
       with:
-        default_author: lustime
+        default_author: github_actions
+        committer_name: 'lustime'
 #      run: |
 #         git config --local user.email "2247868358@qq.com"
 #         git config --local user.name "lustime"
@@ -55,6 +56,7 @@ jobs:
       uses: EndBug/add-and-commit@v7
       with:
         default_author: github_actions
+        committer_name: 'lustime'
         message: 'upload pic'
         add: '*.jpg'
 #      run: |
