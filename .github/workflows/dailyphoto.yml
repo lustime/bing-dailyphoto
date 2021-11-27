@@ -13,7 +13,8 @@ on:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 9 * * *'
   push:
-
+    branches:
+      - main
 jobs:
   build:
 
@@ -63,11 +64,6 @@ jobs:
         committer_name: 'lustime'
         message: 'upload pic'
         add: '*.jpg'
-#      run: |
-#          git config --local user.email "2247868358@qq.com"
-#          git config --local user.name "lustime"
-#          git add "*.jpg"
-#          git commit -m "upload pic"
     - name: Push changes
       uses:  ad-m/github-push-action@master
       with:
