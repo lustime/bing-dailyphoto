@@ -1,4 +1,6 @@
 ## Bing Dailyphoto
+2022-12-17 | [Holiday lights in the Atlanta Botanical Garden, Georgia (© Natalia Kuzmina/Alamy)](https://cn.bing.com/th?id=OHR.AtlantaLights_EN-US5495340965_UHD.jpg)
+
 2022-12-02 | [Paradise Harbour, Antarctica (© SinghaphanAllB/Getty Images)](https://cn.bing.com/th?id=OHR.AntarcticaDay_EN-US9921573438_UHD.jpg)
 
 2022-12-01 | [The Old Town of Rovinj, Croatia (© trabantos/Shutterstock)](https://cn.bing.com/th?id=OHR.RovinjCroatia_EN-US9834093615_UHD.jpg)
