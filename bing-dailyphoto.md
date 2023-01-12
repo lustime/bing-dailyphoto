@@ -1,4 +1,6 @@
 ## Bing Dailyphoto
+2023-01-13 | [Rumelihisarı on the Bosporus Strait at Istanbul, Türkiye (© Drone in Wonderland/Amazing Aerial Agency)](https://cn.bing.com/th?id=OHR.RumeliHisari_EN-US4800002879_UHD.jpg)
+
 2023-01-12 | ['Umschreibung,' a sculpture by artist Olafur Eliasson in Munich, Germany (© Manfred Bail/Alamy)](https://cn.bing.com/th?id=OHR.Umschreibung_EN-US4693850900_UHD.jpg)
 
 2023-01-10 | [Bison in Wind Cave National Park, South Dakota (© Charlie Summers/Minden Pictures)](https://cn.bing.com/th?id=OHR.BisonWindCave_EN-US4537340482_UHD.jpg)
