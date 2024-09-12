@@ -37,10 +37,10 @@ jobs:
       with:
         default_author: user_info
         author_name: lustime
-        author_email: 2247868358@qq.com
+        author_email: lustime.zte@gmail.com
         message: 'commit md'
 #      run: |
-#         git config --local user.email "2247868358@qq.com"
+#         git config --local user.email "lustime.zte@gmail.com"
 #         git config --local user.name "lustime"
 #         git add *.md
 #         git commit -m "update readme.md"
@@ -63,7 +63,7 @@ jobs:
         branch: upload
         default_author: user_info
         author_name: lustime
-        author_email: 2247868358@qq.com
+        author_email: lustime.zte@gmail.com
         message: 'upload pic'
         add: '*.jpg'
     - name: Push changes
